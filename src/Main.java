@@ -1,8 +1,8 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
-
 public class Main {
+
     public static void getMin3Numbers(Integer[] arr) {
         Arrays.sort(arr);
         System.out.println("Minimum 3 Numbers are :");
@@ -10,7 +10,7 @@ public class Main {
             System.out.println(arr[i]);
     }
 
-    public static int smallestPrime(int ary[]) {
+    public static int smallestPrime(Integer ary[]) {
         int smallest, low = 0, high = ary.length - 1, mid;
         Arrays.sort(ary);
 
@@ -42,15 +42,24 @@ public class Main {
         for (int i = 0; i < sz; i++)
             arr[i] = in.nextInt();
         System.out.println("Choose Function Number:");
-        System.out.println("1. Get minimum 3 numbers" + "2. Get");
-        int reply = in.nextInt();
         while (true) {
+            System.out.println("1. Get minimum 3 numbers" + "2. Get smallest prime");
+
+
+            System.out.println("19. Exit");
+            int reply = in.nextInt();
+            if (reply == 19) break;//Breaks out of while loop
             switch (reply) {
                 case 1:
                     getMin3Numbers(arr);
                     break;
 
-                case 18:
+                case 2:
+                    int smallestp = smallestPrime(arr);
+                    System.out.println("Smallest prime is: " + smallestp);
+                    break;
+
+                case 18://Execute all functions
 
             }
         }
