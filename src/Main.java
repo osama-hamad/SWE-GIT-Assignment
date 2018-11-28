@@ -72,6 +72,24 @@ public class Main {
         }
         return -1;
     }
+ public static void Maximum3Numbers()
+    {
+        if(isChar){
+            Arrays.sort(charArr);
+            System.out.println("Maximum 3 characters are: ");
+            for(int i=size-1;i>size-4&& i >=0;i--)
+                System.out.print(charArr[i]+" "); 
+            System.out.println();
+        }
+        else
+        {
+            Arrays.sort(intArr);
+            System.out.println("Maximum 3 Numbers are: ");
+            for(int i=size-1;i>size-4&& i >=0;i--)
+                System.out.print(intArr[i]+" ");
+            System.out.println();
+        }
+    }
     private static void smallestPrime()
     {
         int x = getSmallestPrime();
@@ -114,11 +132,15 @@ public class Main {
                     case 5:
                         smallestPrime();
                         break;
+            	   case 12:
+                	Maximum3Numbers();
+                	break;
                     case 13:
                         getMin3Numbers();
                         break;
                     case 18: // Execute All
                         smallestPrime();//5
+                        Maximum3Numbers();//12
                         getMin3Numbers();//13
                         break;
                 }
