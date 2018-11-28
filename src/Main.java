@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
 
@@ -27,6 +28,8 @@ public class Main {
         System.out.println("16-\tReturn only primes");
         System.out.println("17-\tZero if less than zero");
         System.out.println("18-\tExecute All");
+        System.out.println("19-\tExit");
+        System.out.println("\t************************\t");
     }
 
     public static void getMin3Numbers() {
@@ -70,34 +73,47 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter The number of the input type:\n1- Character\n2- Integer");
-        int type = in.nextInt();
-        if (type == 1) {
-            isChar = true;
-        }
-        System.out.print("Enter The Size of the Array: ");
-        size = in.nextInt();
-        System.out.println("Enter " + size + " Elements of the array");
-        if (isChar) {
-            charArr = new char[size];
-            for (int i = 0; i < size; i++) {
-                charArr[i] = in.next().charAt(0);
-            }
-        } else {
-            intArr = new int[size];
-            for (int i = 0; i < size; i++) {
-                intArr[i] = in.nextInt();
-            }
-        }
-        printMenu();
-        int choice = in.nextInt();
-        switch (choice) {
-            case 13:
-                getMin3Numbers();
+        while (true) {
+            try {
+                printMenu();
+                int choice = in.nextInt();
+                if (choice == 19) break;
+
+                System.out.println("Enter The number of the input type:\n1- Character\n2- Integer");
+                int type = in.nextInt();
+                if (type == 1) {
+                    isChar = true;
+                }
+                System.out.print("Enter The Size of the Array: ");
+                size = in.nextInt();
+                System.out.println("Enter " + size + " Elements of the array");
+                if (isChar) {
+                    charArr = new char[size];
+                    for (int i = 0; i < size; i++) {
+                        charArr[i] = in.next().charAt(0);
+                    }
+                } else {
+                    intArr = new int[size];
+                    for (int i = 0; i < size; i++) {
+                        intArr[i] = in.nextInt();
+                    }
+                }
+
+                switch (choice) {
+                    case 13:
+                        getMin3Numbers();
+                        break;
+                    case 18: // Execute All
+                        getMin3Numbers();
+                        break;
+                }
+            }catch (InputMismatchException e)
+            {
+                System.out.println("Please enter a valid input");
                 break;
-            case 18: // Execute All
-                getMin3Numbers();
-                break;
+            }
         }
+
+
     }
 }
