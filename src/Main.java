@@ -140,6 +140,7 @@ public class Main {
                         break;
                     case 18: // Execute All
                         smallestPrime();//5
+                        Maximum3Numbers();//12
                         getMin3Numbers();//13
                         break;
                 }
