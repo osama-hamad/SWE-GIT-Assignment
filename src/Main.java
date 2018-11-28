@@ -3,10 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
 
-    static int[] intArr;
-    static char[] charArr;
-    static int size;
-    static boolean isChar = false;   // false = integer, true = char
+    private static int[] intArr;
+    private static char[] charArr;
+    private static int size;
+    private static boolean isChar = false;   // false = integer, true = char
 
     private static void printMenu() {
         System.out.println("Choose the number of operation you want to execute:");
@@ -32,7 +32,7 @@ public class Main {
         System.out.println("\t************************\t");
     }
 
-    public static void getMin3Numbers() {
+    private static void getMin3Numbers() {
         if (isChar) {
             Arrays.sort(charArr);
             System.out.print("Minimum 3 characters are: ");
@@ -48,29 +48,59 @@ public class Main {
         }
     }
 
-    public static int smallestPrime(Integer ary[]) {
-        int smallest, low = 0, high = ary.length - 1, mid;
-        Arrays.sort(ary);
-
-        int key = 2; //or 3 or 5 or 7 or 11 or ... p
-        //Binary search
-        while (low <= high) {
-            mid = (low + high) / 2;
-            if (ary[mid] > key) {
-                high = mid - 1;
-            } else if (ary[mid] < key) {
-                low = mid + 1;
-            } else {
-                smallest = ary[mid];
-                return smallest;
-            }
-
-
+    private static int getSmallestPrime() {
+        if(isChar)
+            return 0;
+        Arrays.sort(intArr);
+        int length = intArr.length;
+        for(int i =0; i< length; i++)
+        {
+            boolean flag = false;//For signaling for the number prime or not
+            for(int j = 2; j <= Math.floor(Math.sqrt(intArr[i])); j++)
+           {
+               if(intArr[i] % j == 0)//Not prime
+               {
+                   if(intArr[i] == 2)
+                       return intArr[i];
+                   flag = true;
+                   break;
+               }
+           }
+            if(!flag)
+                if(intArr[i]!=1)
+                    return intArr[i];
         }
-        smallest = -1;
-        return smallest;
+        return -1;
     }
- public static void returnPrime()
+ private static void Maximum3Numbers()
+    {
+        if(isChar){
+            Arrays.sort(charArr);
+            System.out.println("Maximum 3 characters are: ");
+            for(int i=size-1;i>size-4&& i >=0;i--)
+                System.out.print(charArr[i]+" "); 
+            System.out.println();
+        }
+        else
+        {
+            Arrays.sort(intArr);
+            System.out.println("Maximum 3 Numbers are: ");
+            for(int i=size-1;i>size-4&& i >=0;i--)
+                System.out.print(intArr[i]+" ");
+            System.out.println();
+        }
+    }
+    private static void smallestPrime()
+    {
+        int x = getSmallestPrime();
+        if(x == 0)
+            System.out.println("Sorry, no prime numbers in characters.");
+        else if(x == -1)
+            System.out.println("No prime number in this list.");
+        else
+            System.out.println("Smallest prime is: " + x);
+    }
+ private static void returnPrime()
     {
         int arr[]=new int[size];
         if (isChar)
@@ -98,7 +128,7 @@ public class Main {
         }
         System.out.println();
     }
-    public static void main(String[] args) {
+  public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (true) {
             try {
@@ -127,6 +157,12 @@ public class Main {
                 }
 
                 switch (choice) {
+                    case 5:
+                        smallestPrime();
+                        break;
+            	   case 12:
+                	Maximum3Numbers();
+                	break;
                     case 13:
                         getMin3Numbers();
                         break;
@@ -134,13 +170,15 @@ public class Main {
                         returnPrime();
                         break;    
                     case 18: // Execute All
-                        getMin3Numbers();
-                         returnPrime();
+                        smallestPrime();//5
+                        Maximum3Numbers();//12
+                        getMin3Numbers();//13
+                        returnPrime();//16
                         break;
                 }
             }catch (InputMismatchException e)
             {
-                System.out.println("Please enter a valid input");
+                System.out.println("Please enter a valid input.");
                 break;
             }
         }
