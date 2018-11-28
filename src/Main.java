@@ -3,10 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
 
-    static int[] intArr;
-    static char[] charArr;
-    static int size;
-    static boolean isChar = false;   // false = integer, true = char
+    private static int[] intArr;
+    private static char[] charArr;
+    private static int size;
+    private static boolean isChar = false;   // false = integer, true = char
 
     private static void printMenu() {
         System.out.println("Choose the number of operation you want to execute:");
@@ -47,30 +47,49 @@ public class Main {
             System.out.println();
         }
     }
-
-    public static int smallestPrime(Integer ary[]) {
-        int smallest, low = 0, high = ary.length - 1, mid;
-        Arrays.sort(ary);
-
-        int key = 2; //or 3 or 5 or 7 or 11 or ... p
-        //Binary search
-        while (low <= high) {
-            mid = (low + high) / 2;
-            if (ary[mid] > key) {
-                high = mid - 1;
-            } else if (ary[mid] < key) {
-                low = mid + 1;
-            } else {
-                smallest = ary[mid];
-                return smallest;
-            }
-
-
+    private static int factorial(int x)
+    {
+        int fact=1;
+        for(int i =1; i<= x; i++)
+        {
+            fact *= i;
         }
-        smallest = -1;
-        return smallest;
+        return fact;
     }
-
+    private static int getSmallestPrime() {
+        if(isChar)
+            return 0;
+        Arrays.sort(intArr);
+        int length = intArr.length;
+        for(int i =0; i< length; i++)
+        {
+            boolean flag = false;//For signaling for the number prime or not
+            for(int j = 2; j <= Math.floor(Math.sqrt(intArr[i])); j++)
+           {
+               if(intArr[i] % j == 0)//Not prime
+               {
+                   if(intArr[i] == 2)
+                       return intArr[i];
+                   flag = true;
+                   break;
+               }
+           }
+            if(!flag)
+                if(intArr[i]!=1)
+                    return intArr[i];
+        }
+        return -1;
+    }
+    private static void smallestPrime()
+    {
+        int x = getSmallestPrime();
+        if(x == 0)
+            System.out.println("Sorry, no prime numbers in characters.");
+        else if(x == -1)
+            System.out.println("No prime number in this list.");
+        else
+            System.out.println("Smallest prime is: " + x);
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -100,16 +119,20 @@ public class Main {
                 }
 
                 switch (choice) {
+                    case 5:
+                        smallestPrime();
+                        break;
                     case 13:
                         getMin3Numbers();
                         break;
                     case 18: // Execute All
-                        getMin3Numbers();
+                        smallestPrime();//5
+                        getMin3Numbers();//13
                         break;
                 }
             }catch (InputMismatchException e)
             {
-                System.out.println("Please enter a valid input");
+                System.out.println("Please enter a valid input.");
                 break;
             }
         }
