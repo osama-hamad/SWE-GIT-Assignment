@@ -47,15 +47,7 @@ public class Main {
             System.out.println();
         }
     }
-    private static int factorial(int x)
-    {
-        int fact=1;
-        for(int i =1; i<= x; i++)
-        {
-            fact *= i;
-        }
-        return fact;
-    }
+
     private static int getSmallestPrime() {
         if(isChar)
             return 0;
