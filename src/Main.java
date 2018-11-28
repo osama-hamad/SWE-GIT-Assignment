@@ -70,7 +70,34 @@ public class Main {
         smallest = -1;
         return smallest;
     }
-
+ public static void returnPrime()
+    {
+        int arr[]=new int[size];
+        if (isChar)
+        {
+            for (int i=0;i<size;i++)
+                arr[i]=charArr[i]-'0';
+        }
+        else
+        {
+            for (int i=0;i<size;i++)
+                arr[i]=intArr[i];
+        }
+        System.out.print("Prime Numbers:");
+        boolean flage;
+        for (int j=0;j<arr.length;j++)
+        {
+            flage=false;
+            for (int i = 2; i <= arr[j]/2; i++)
+            {
+                if (arr[j] % i == 0)
+                    flage=true;
+            }
+            if (flage==false&&arr[j]>1)
+                System.out.print(arr[j]+" ");
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -103,8 +130,12 @@ public class Main {
                     case 13:
                         getMin3Numbers();
                         break;
+                    case 16:
+                        returnPrime();
+                        break;    
                     case 18: // Execute All
                         getMin3Numbers();
+                         returnPrime();
                         break;
                 }
             }catch (InputMismatchException e)
