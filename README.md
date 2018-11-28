@@ -7,3 +7,6 @@
 3-Also add your function in the executeAll case (i.e case 18).
 
 4-Print your function name before the output.
+
+
+5- Please pull from master branch only.
