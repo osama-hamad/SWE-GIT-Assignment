@@ -128,6 +128,19 @@ public class Main {
         }
         System.out.println();
     }
+
+	public static int median() {
+        
+	Arrays.sort(intArr);
+       if (intArr.length % 2 !=0)
+       { 
+           System.out.println("The median is:" + intArr[intArr.length/2]);
+       }
+       else {
+           System.out.println("The median is:" + (intArr[intArr.length/2]+intArr[intArr.length/2-1])/2.0);
+       }
+
+    }
   public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (true) {
@@ -166,6 +179,9 @@ public class Main {
                     case 13:
                         getMin3Numbers();
                         break;
+		    case 15:
+			median();
+			break;
                     case 16:
                         returnPrime();
                         break;    
